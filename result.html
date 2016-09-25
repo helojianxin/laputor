@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta http-equiv="content-type" content="text/html;charset=utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>电影推荐-展示页</title>
+  <link rel="stylesheet" href="bootstrap/bootstrap.min.css">
+  <script src="bootstrap/jquery.min.js"></script>
+  <script src="bootstrap/bootstrap.min.js"></script>
+</head>
+<body>
+  <div class="container-fluid">
+    <div class="row-fluid">
+      <div class="span12">
+        <h2 align="center">
+          以下是根据您之前提供的起始豆瓣电影页,向您推送的推荐电影
+        </h2>
+
+        <div class="accordion" id="accordion-209225">
+          <?php foreach($final as $k => $v){ ?>
+          <div class="accordion-group">
+            <div class="accordion-heading" id="div_head_<?php echo $k;?>" >
+              <a class="accordion-toggle" ><?php echo ($k+1) ; switch($k){case 0: echo 'st';break;case 1:echo 'nd';break;case 2:echo 'rd';break;default: echo 'th';break;}?>:<?php echo $v['film_names'] ;?></a><!-- data-toggle="collapse" data-parent="#accordion-209225" href="#accordion-element-918511" -->
+            </div>
+            <div class="accordion-body" id="div_body_<?php echo $k;?>" >
+              <div class="accordion-inner" >
+                推荐理由:<?php echo $v['base_name']; ?> <br/>
+                豆瓣评分:<?php echo $v['rating_num']; ?> <br/>
+                豆瓣影评数:<?php echo $v['comments_num'] ;?> <br/>
+                豆瓣电影页:<?php echo $v['film_url']; ?> <br/>
+                海报:<p><img alt="<?php echo $v['film_names']?>的海报" src="<?php echo $v['film_poster']; ?>" /> </p>
+                简介:<p><?php echo $v['synopsis']; ?> </p>
+                有用数最高的影评:<p>&nbsp;&nbsp;&nbsp;&nbsp;<?php echo $v['recommended']?> </p>
+              </div>
+            </div>
+          </div>
+          <?php }; ?>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
