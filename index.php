@@ -13,4 +13,10 @@
  ****/
 
 header("Content-type: text/html; charset=utf-8");
-include_once "index.html";
+//echo $_SERVER["HTTP_USER_AGENT"];
+if(strpos($_SERVER["HTTP_USER_AGENT"],'Chrome') && strpos($_SERVER["HTTP_USER_AGENT"],'Mac OS X'))
+{
+    include_once "index_chrome.html";
+}else{
+    include_once "index.html";
+}

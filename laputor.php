@@ -151,12 +151,25 @@ foreach($arr as $k => $v)
     $final[] = $result[$v];
 }
 
-//echo "<pre>";
-//print_r($final);
-//exit;
 if($final)
 {
-    include_once "result.html";
+    if(strpos($_SERVER["HTTP_USER_AGENT"],'Chrome') && strpos($_SERVER["HTTP_USER_AGENT"],'Mac OS X'))
+    {
+        echo "可能是因为chrome强制字体设置的原因,本浏览器暂时无法正常显示(推荐用Safari浏览),下面直接打印生成的数据:<pre>";
+        print_r($final);
+        //include_once "result_chrome.html";
+    }
+    else{
+        include_once "result.html";
+    }
+
 }else{
-    include_once "index.html";
+    if(strpos($_SERVER["HTTP_USER_AGENT"],'Chrome') && strpos($_SERVER["HTTP_USER_AGENT"],'Mac OS X'))
+    {
+        include_once "index_chrome.html";
+    }
+    else{
+        include_once "index.html";
+    }
+
 }
